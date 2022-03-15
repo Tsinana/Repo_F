@@ -30,10 +30,24 @@ let rec divider_rc a init beg =
 ///Оболочка для обхода ВП
 let UberFunc a = divider_rc a 0 1
 
+//---метод 2---
+
+let rec Search a (max:int) = 
+    if a = 0 then max
+    elif ((a%10)>max)&&((a%10%3<>0)) then Search (a/10) (a%10)
+    else Search (a/10) max
+
+///Оболочка для Search
+let ShellForSearch a = Search a -1
+
 [<EntryPoint>]
 let main argv =
     let a = System.Convert.ToInt32(System.Console.ReadLine())
     printfn ""
-    printfn $"Колво четных чисел, не взаимно простых с данным числом- {UberFunc a}"
+    printfn $"Колво четных чисел, не взаимно простых с данным числом - {UberFunc a}"
     printfn ""
+    if (ShellForSearch a) <> -1 then printfn $"Максимальная цифра числа, не делящуюся на 3 - {ShellForSearch a}"
+    else printfn $"Максимальная цифра числа, не делящуюся на 3 - NULL"
+    printfn ""
+
     0
