@@ -7,10 +7,7 @@
 только оператор каррирования, потом только оператор суперпозиции.*)
 
 open System
-
-
-open System
-
+    
 //---метод 1---
 
 ///Ф-ия нахождения greatest common divisor
@@ -72,16 +69,16 @@ let rec MegaFinding_a_Maximum_Number_Not_Divisible_by_3 a beg maxbeg sumnum=
 ///Оболочка для метода 3
 let  MegaShellForMegaFinding_a_Maximum_Number_Not_Divisible_by_3 a = MegaFinding_a_Maximum_Number_Not_Divisible_by_3 a 1 0 (Shell_For_Finding_The_lowest_divisor_of_the_original_number a)
 
-
-let select_fun = function
-    | 1 -> 1
-    | 2 -> 2
-    | _ -> 3
-
+///функция, которая принимает номер от 1 до 3 и возвращает одну из трех написанных функций
+let Select_Fun = function
+    | 1 -> Shell_For_Сoprime_Integers
+    | 2 -> Shell_For_Finding_a_Maximum_Number_Not_Divisible_by_3
+    | _ -> MegaShellForMegaFinding_a_Maximum_Number_Not_Divisible_by_3
+    
 [<EntryPoint>]
 let main argv =
     Console.WriteLine("Введите номер функции и число")
-    let a = (System.Convert.ToInt32(System.Console.ReadLine()),System.Convert.ToInt32(System.Console.ReadLine()))
-    let result = select_fun 
-    printfn "Результат применения функции №%d: %d" (fst opts) result
+    let a = (Convert.ToInt32(Console.ReadLine()),Convert.ToInt32(Console.ReadLine()))
+    let result = Select_Fun (fst a)
+    printfn $"tu tu ru {result (snd a)}"
     0
