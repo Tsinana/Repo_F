@@ -5,7 +5,7 @@
 open System
 
 ///Иниц. списка
-let init_list = 
+let init_list() = 
     let rec read_list n=
         if n=0 then []
         else
@@ -35,13 +35,13 @@ let rec find_sm list (p: int->int->int) sm =
 let listMin list = 
     match list with
     |[]->0
-    |h::t->find_sm list (fun x y -> if x > y then x else y) h
+    |h::t->find_sm list (fun x y -> if x < y then x else y) h
 
 ///Ф-ия поиска max
 let listMax list = 
     match list with
     |[]->0
-    |h::t->find_sm list (fun x y -> if x < y then x else y) h
+    |h::t->find_sm list (fun x y -> if x > y then x else y) h
 
 ///Ф-ия задачи
 let shell_fun1 (list):int list = 
@@ -59,6 +59,6 @@ let shell_fun1 (list):int list =
 
 [<EntryPoint>]
 let main argv =
-    let list = [2;2;2;1;2;3;4;5;2;2;2]     // разобрать кек
+    let list = [2;2;2;1;2;3;4;5;2;2;2]    
     write_list (shell_fun1 list) |>ignore
     0 // return an integer exit code
