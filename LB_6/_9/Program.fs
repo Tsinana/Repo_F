@@ -61,6 +61,5 @@ let fun1 list =
 
 [<EntryPoint>]
 let main argv =
-    let a = init_list()
-    write_list (fun1 a)|>ignore
+    init_list()|>fun1|>write_list|>ignore
     0 // return an integer exit code
