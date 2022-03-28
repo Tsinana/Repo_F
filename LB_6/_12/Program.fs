@@ -58,7 +58,6 @@ let shell_fun1 (list):int list =
     find_first_index list (listMin list) (listMax list) 0 [] [] []
 
 [<EntryPoint>]
-let main argv =
-    let list = [2;2;2;1;2;3;4;5;2;2;2]    
-    write_list (shell_fun1 list) |>ignore
+let main argv =   
+    init_list()|>shell_fun1|>write_list|>ignore
     0 // return an integer exit code
