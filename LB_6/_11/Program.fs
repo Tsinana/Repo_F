@@ -11,7 +11,7 @@
 open System
 
 ///Игит. списка
-let init_list = 
+let init_list() = 
     let rec read_list n=
         if n=0 then []
         else
@@ -44,7 +44,7 @@ let shell_for_fun1 list (f: int->int->int->int) =
 
 [<EntryPoint>]
 let main argv =
-    let list1 = init_list
+    let list1 = init_list()
     let list2 = shell_for_fun1 list1 (fun x y z ->x+y+z)
     write_list list2 |> ignore
     0 
