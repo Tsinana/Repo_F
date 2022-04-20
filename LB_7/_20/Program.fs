@@ -46,7 +46,7 @@ let func1 list1 =
 
 [<EntryPoint>]
 let main argv =
-    let list1 = [1;2;5;9]
+    let list1 = init_list()
     func list1|>ignore 
     func1 list1|>ignore
     0 // return an integer exit code
