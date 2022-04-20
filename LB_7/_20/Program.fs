@@ -37,8 +37,16 @@ let func list1 =
             func_rec t list3
     func_rec list1 list2|>write_list
 
+///Тоже самое, но c использованием классной функции
+let func1 list1 =
+    let min = List.min list1
+    let max = List.max list1 
+    [min..max]|>List.except list1|>write_list
+ 
+
 [<EntryPoint>]
 let main argv =
     let list1 = [1;2;5;9]
     func list1|>ignore 
+    func1 list1|>ignore
     0 // return an integer exit code
