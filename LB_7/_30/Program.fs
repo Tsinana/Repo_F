@@ -48,6 +48,6 @@ let func list1 digit =
 
 [<EntryPoint>]
 let main argv =
-    let list1 = [1;2;5;9]
+    let list1 = init_list()
     func list1 1|>Console.WriteLine
     0 // return an integer exit code
