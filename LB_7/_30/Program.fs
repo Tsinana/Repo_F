@@ -29,14 +29,25 @@ let rec write_list = function
                    Console.WriteLine(head)
                    write_list tail 
 
-///функция решения задачи
+///функция решения задачи List.tryItem (n-2) list1
 let func list1 digit = 
+    let f2 list = List.nth list (List.findIndex (fun x -> x = (List.max (List.map (fun el -> List.length (List.filter (fun elem -> (elem = el)) list)) list))) (List.map (fun el -> List.length (List.filter (fun elem -> (elem = el)) list)) list))   
+    
     let n = List.length list1
     if digit >= n then 
         Console.WriteLine("Не надо так")
         0
     else
-        let arr = List.toArray list1
+        if digit = (n-1) then 
+            if List.item (n-2) list1 > List.item digit list1 then List.item (n-2) list1
+            else List.item (digit) list1
+        elif digit = 0 then 
+            if List.item (1) list1 > List.item digit list1 then List.item 1 list1
+            else List.item digit list1
+        else 
+            [(List.item digit list1); (List.item (digit-1) list1);(List.item (digit+1) list1)]|>List.max
+
+        (*let arr = List.toArray list1
         if digit = (n-1) then 
             if arr.[n-2] > arr.[digit] then arr.[n-2]
             else arr.[digit]
@@ -44,7 +55,7 @@ let func list1 digit =
             if arr.[1] > arr.[digit] then arr.[1]
             else arr.[digit]
         else 
-            [|arr.[digit];arr.[digit-1];arr.[digit+1]|]|>Array.max 
+            [|arr.[digit];arr.[digit-1];arr.[digit+1]|]|>Array.max*)
 
 [<EntryPoint>]
 let main argv =

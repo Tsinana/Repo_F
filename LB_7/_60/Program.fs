@@ -1,6 +1,6 @@
-﻿(*1.50. Для двух введенных списков L1 и L2 построить новый список,
-состоящий из элементов, встречающихся только в одном из этих списков и
-не повторяющихся в них.*)
+﻿(*1.60. Дан список. Построить массив из элементов, делящихся на свой
+номер и встречающихся в исходном массиве 1 раз.
+*)
 
 open System
 
@@ -25,15 +25,13 @@ let rec write_list = function
                    Console.WriteLine(head)
                    write_list tail 
 
-///функция решения задачи
-let func list1 list2 =  
-   let list3 = List.append list1 list2
-   List.filter (fun x -> ((((List.length (List.filter (fun elem -> elem = x) list3))) = 1))) list3
-   
-    
+///Функция решения задачи
+let func list1 = 
+    let a,b = list1|>List.indexed |>List.skip 1 |> List.filter (fun (i,x)->(x%i)=0)|>List.unzip
+    b|>List.filter(fun x ->(List.length (List.filter (fun elem -> elem = x) list1))=1)
+
 [<EntryPoint>]
 let main argv =
     let list1 = init_list()
-    let list2 = init_list()
-    func list1 list2|>write_list|>ignore
-    0 
+    func list1|>write_list|>ignore
+    0 // return an integer exit code
