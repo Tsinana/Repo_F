@@ -3,6 +3,8 @@
 Дана строка в которой записаны слова через пробел. Необходимо
 посчитать количество слов.
 
+Дано натуральное число. Необходимо найти количество различных
+цифр в его десятичной записи.
 *)
 
 open System
@@ -30,6 +32,10 @@ let func_1 str1 =
 let func_2 str1 =
     (str1|>String.filter(fun c-> c = ' ')|>String.length)+1
 
+let func_3 str1 =
+    List.distinct(List.splitInto (String.length str1) (Seq.toList str1))|>List.length
+
+
 ///Ф-ия выбора,а над название потом поработаю
 let ololo str1 a =
     match a with
@@ -46,5 +52,7 @@ let main argv =
     1. Узнать яв-ся ли слово полиндромом\n
     2. А сколько в строке словечек?\n
     3. Посчитать колво количество различных цифр в его десятичной записи\n")
-    ololo string0|>ignore
+    let a = Convert.ToInt32(Console.ReadLine())
+    Console.WriteLine()
+    ololo string0 a |>ignore
     0 // return an integer exit code
