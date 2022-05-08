@@ -11,11 +11,21 @@ type Class_Id (fullName: string, sex: char, dob: DateTime, nationality: string, 
     member this.bpl: string = bpl.ToUpper()
     member this.series: string = series
     member this.number: string = number
+    member this.seriesInt: int = Convert.ToInt32(series)
+    member this.numberInt: int = Convert.ToInt32(number)
     member this.issued:string = issued.ToUpper()
     member this.doi:DateTime = doi
     member this.code: string = $"{departmentCode.[0]}{departmentCode.[1]}{departmentCode.[2]}-{departmentCode.[3]}{departmentCode.[4]}{departmentCode.[5]}"
-    
-    member this.Print() = printf$"Паспорт гражданина РФ\n{this.fullName}\n
+    //методы
+    member this.Compare(s:int,n:int) = if s=this.seriesInt&&n=this.numberInt then this.Print() else printf"Документ не найден\n"
+    member this.Compare() = 
+        printf"Введите серию паспорта: "
+        let ser = Convert.ToInt32(Console.ReadLine())
+        printf"Введите номер паспорта: "
+        let num = Convert.ToInt32(Console.ReadLine())
+        printf"\n"
+        this.Compare(ser,num)
+    member this.Print() = printf$"\nПаспорт гражданина РФ\n{this.fullName}\n
 Пол      Дата рождения     Гражданство\n{this.sex}        {this.dob.ToShortDateString()}        {this.nationality}\n
 Место рождения\n{this.bpl}\n
 Серия и номер паспорта\n{this.series} {this.number}\n
@@ -25,7 +35,7 @@ type Class_Id (fullName: string, sex: char, dob: DateTime, nationality: string, 
 [<EntryPoint>]
 let main argv =
     let cl1 = Class_Id("Иванов Иван Иваныч", 'M',new DateTime(2000,01,01),"Россия","ГОР. ТУАПСЕ КРАСНОДАРСКОГО КРАЯ","0123","012345","ОТДЕЛОМ УФМС РОССИИ ПО КРАСНОДАРСКОМУ КРАЮ В ТУАПСИНСКОМ РАЙОНЕ",new DateTime(2014,01,01), "012345")
-    cl1.Print()
+    cl1.Compare()
 
     
     0 // return an integer exit code
