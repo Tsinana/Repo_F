@@ -52,49 +52,42 @@ type Class_Id (fullName: string, sex: char, dob: DateTime, nationality: string, 
 Выдан\n{issued}\n
 Дата выдачи     Код подразделения\n{this.doi.ToShortDateString()}      {this.code}\n"
 
-let CreateObjClassId cl= 
-    printf "Начат процесс создания новой записи!\nПри заполнении данных, пожалуйста, используйте только МОГУЧИЕ БУКВЫ и цифры.\n\nВведите ФИО\n"
+let CreateObjClassId() = 
+    printf "Начат процесс создания новой записи!\nПри заполнении данных, пожалуйста, используйте только МОГУЧИЕ БУКВЫ и цифры. Иван-Иваныч следит за вами -_-\n\nВведите ФИО\n"
     let fullName = Console.ReadLine()
     let myReg = new Regex("([^А-Яа-я ])|([А-Я][А-Я])|([а-я]+[А-Я])|( [а-я]+)")
-    if myReg.IsMatch(fullName) = false then 
-        printf"Введите пол используя символы 'M' и 'Ж'\n"
-        let sex = Console.ReadLine()
-        let myReg = new Regex("[^М^Ж]")
-        if myReg.IsMatch(sex) = false then 
-            printf "Введите дату рождения как - дд/мм/гггг\n"
-            let dobS = Console.ReadLine()
-            let myReg = new Regex("[^0-9/]")
-            if myReg.IsMatch(dobS) = false then
-                let dob = Convert.ToDateTime(dobS)
-                printf"Введите гражданство\n"
-                let nat = Console.ReadLine()
-                let myReg = new Regex("([^А-Яа-я ])|([А-Я][А-Я])|([а-я]+[А-Я])|( [а-я]+)")
-                if myReg.IsMatch(nat) = false then
-                    printf"Введите место рождения\n"
-                    let bpl = Console.ReadLine()
-                    let myReg = new Regex("[a-zA-Z0-9]")
-                    if myReg.IsMatch(bpl) = false then
-                        printf"Введите серию документа\n"
-                        let series = Convert.ToInt32(Console.ReadLine())
-                        if series<10000&&series>0 then
-                            printf"Введите номер документа\n"
-                            let number = Convert.ToInt32(Console.ReadLine())
-                            if number<1000000&&number>0 then
-                                printf"Введите кем был выдан документ\n"
-                                let issued = Console.ReadLine()
-                                let myReg = new Regex("[a-zA-Z0-9]")
-                                if myReg.IsMatch(issued) = false then
-                                    printf"Введите дату выдачи как - дд/мм/гггг\n"
-                                    let doiS = Console.ReadLine()
-                                    let myReg = new Regex("[^0-9/]")
-                                    if myReg.IsMatch(doiS) = false then
-                                        let doi = Convert.ToDateTime(doiS)
-                                        printf"Введите код выдачи\n"
-                                        let cod = Convert.ToInt32(Console.ReadLine())
-                                        if (cod<1000000)&&(cod>0) then 
-                                            //Class_Id(fullName,sex.[0],dob,nat,bpl,series,number,issued,doi,cod)
-                                            Console.ReadLine()|>ignore
-    Class_Id("Иванов Иван Иваныч", 'M',new DateTime(2000,01,01),"Россия","ГОР. ТУАПСЕ КРАСНОДАРСКОГО КРАЯ",0123,012345,"ОТДЕЛОМ УФМС РОССИИ ПО КРАСНОДАРСКОМУ КРАЮ В ТУАПСИНСКОМ РАЙОНЕ",new DateTime(2014,01,01), 012345)
+    printf"Введите пол используя символы 'M' и 'Ж'\n"
+    let sex = Console.ReadLine()
+    let myReg1 = new Regex("[^М^Ж]")
+    printf "Введите дату рождения как - дд/мм/гггг\n"
+    let dobS = Console.ReadLine()
+    let myReg2 = new Regex("[^0-9/]")
+    let dob = Convert.ToDateTime(dobS)
+    printf"Введите гражданство\n"
+    let nat = Console.ReadLine()
+    let myReg3 = new Regex("([^А-Яа-я ])|([А-Я][А-Я])|([а-я]+[А-Я])|( [а-я]+)")
+    printf"Введите место рождения\n"
+    let bpl = Console.ReadLine()
+    let myReg4 = new Regex("[a-zA-Z0-9]")
+    printf"Введите серию документа\n"
+    let series = Convert.ToInt32(Console.ReadLine())
+    printf"Введите номер документа\n"
+    let number = Convert.ToInt32(Console.ReadLine())
+    printf"Введите кем был выдан документ\n"
+    let issued = Console.ReadLine()
+    let myReg5 = new Regex("[a-zA-Z0-9]")
+    printf"Введите дату выдачи как - дд/мм/гггг\n"
+    let doiS = Console.ReadLine()
+    let myReg6 = new Regex("[^0-9/]")
+    let doi = Convert.ToDateTime(doiS)
+    printf"Введите код выдачи\n"
+    let cod = Convert.ToInt32(Console.ReadLine())
+    if (cod<1000000)&&(cod>0)&&(number<1000000&&number>0)&&(series<10000&&series>0)&&(myReg4.IsMatch(bpl)=false&&myReg5.IsMatch(issued)=false&&myReg6.IsMatch(doiS)=false&&myReg3.IsMatch(nat)=false&&myReg2.IsMatch(dobS)=false&&myReg1.IsMatch(sex)=false&&myReg.IsMatch(fullName)=false) then 
+        printf"\nЗапись создана успешно!\n"
+        Class_Id(fullName,sex.[0],dob,nat,bpl,series,number,issued,doi,cod)
+    else
+        printf"\nИван-Иваныч нашел у Вас ошибку и теперь это его запись\n"
+        Class_Id("Иванов Иван Иваныч", 'M',new DateTime(2000,01,01),"Россия","ГОР. ТУАПСЕ КРАСНОДАРСКОГО КРАЯ",0123,012345,"ОТДЕЛОМ УФМС РОССИИ ПО КРАСНОДАРСКОМУ КРАЮ В ТУАПСИНСКОМ РАЙОНЕ",new DateTime(2014,01,01), 012345)
 
 
 
